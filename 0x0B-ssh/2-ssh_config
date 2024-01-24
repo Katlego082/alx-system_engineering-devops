@@ -1,0 +1,8 @@
+# ~/.ssh/config
+
+Host katlego
+    HostName 54.165.43.95
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+
