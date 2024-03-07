@@ -1,17 +1,16 @@
 #!/usr/bin/python3
-"""_summary_
-"""
-import requests
+
+import requests as r
 
 
 def number_of_subscribers(subreddit):
-    """_summary_"""
-    if subreddit is None or type(subreddit) is not str:
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:73.0) \
+        Gecko/20100101 Firefox/73.0"
+    }
+    response = r.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 404:
         return 0
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {"User-Agent": "Custom User Agent"}
-
-    response = requests.get(url, headers=headers, allow_redirects=False)
-    data = response.json()
-    subs = data.get("data", {}).get("subscribers", 0)
-    return subs
+    results = response.json().get("data")
+    return results.get("subscribers")
