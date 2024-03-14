@@ -1,0 +1,12 @@
+# web_flask/0-hello_route.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/airbnb-onepage/')
+def index():
+    return 'Welcome to AirBnB Clone v2 - Web Framework!'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
